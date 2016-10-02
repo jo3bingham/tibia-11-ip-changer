@@ -49,7 +49,7 @@ namespace Tibia
             var processHandle = WinAPI.OpenProcess((WinAPI.PROCESS_VM_READ | WinAPI.PROCESS_VM_WRITE | WinAPI.PROCESS_VM_OPERATION), 0, (uint)process.Id);
             var buffer = Memory.ReadBytes(processHandle, baseAddress, (uint)process.MainModule.ModuleMemorySize);
             var rsaKey = Memory.ScanString(buffer, Constants.RealTibiaRsaHexKey);
-            var loginServer = Memory.ScanString(buffer, "https://secure.tibia.com/services/login.php");
+            var loginServer = Memory.ScanString(buffer, Constants.LoginWebServiceUrl);
 
             process.Kill();
 
