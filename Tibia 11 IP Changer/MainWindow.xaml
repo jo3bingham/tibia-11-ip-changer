@@ -1,0 +1,25 @@
+﻿<Window x:Class="Tibia.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tibia"
+        mc:Ignorable="d"
+        Title="Tibia 11 IP Changer" SizeToContent="Height" Width="250" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <Label Content="Client Path" DockPanel.Dock="Left" Margin="5" />
+                <Button Content="..." DockPanel.Dock="Right" Margin="0,5,5,5" Name="uxBrowse" Click="uxBrowse_Click" />
+                <TextBox Margin="0,5,5,5" MaxWidth="142" Name="uxClientPath" />
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <DockPanel DockPanel.Dock="Top">
+                    <Label Content="Login Web Service" DockPanel.Dock="Left" Margin="5" />
+                    <TextBox DockPanel.Dock="Right" Margin="0,5,5,5" Name="uxIP" Text="http://127.0.0.1" />
+                </DockPanel>
+            </DockPanel>
+            <Button Content="Apply" Margin="5" Name="uxApply" Click="uxApply_Click" />
+        </DockPanel>
+    </Grid>
+</Window>
