@@ -66,7 +66,7 @@ namespace Tibia
             baseAddress = (uint)WinAPI.GetBaseAddress(processHandle).ToInt32();
 
             Memory.WriteString(processHandle, rsaKey + baseAddress, Constants.OpenTibiaRsaHexKey);
-            Memory.WriteString(processHandle, loginServer + baseAddress, Memory.ReadString(processHandle, loginServer + baseAddress).Replace("https://secure.tibia.com/services/login.php", "http://127.0.0.1"));
+            Memory.WriteString(processHandle, loginServer + baseAddress, Memory.ReadString(processHandle, loginServer + baseAddress).Replace("https://secure.tibia.com/services/login.php", uxIP.Text));
             WinAPI.ResumeThread(pi.hThread);
             process.WaitForInputIdle();
             WinAPI.CloseHandle(pi.hThread);
