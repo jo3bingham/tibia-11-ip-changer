@@ -16,7 +16,7 @@
             <DockPanel DockPanel.Dock="Top">
                 <DockPanel DockPanel.Dock="Top">
                     <Label Content="Login Web Service" DockPanel.Dock="Left" Margin="5" />
-                    <TextBox DockPanel.Dock="Right" Margin="0,5,5,5" Name="uxIP" Text="http://127.0.0.1" />
+                    <TextBox DockPanel.Dock="Right" Margin="0,5,5,5" Name="uxIP" Text="http://127.0.0.1/login.php" />
                 </DockPanel>
             </DockPanel>
             <Button Content="Apply" Margin="5" Name="uxApply" Click="uxApply_Click" />

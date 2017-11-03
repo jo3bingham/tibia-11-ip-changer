@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
@@ -31,7 +32,9 @@ namespace Tibia
 
         private void uxApply_Click(object sender, RoutedEventArgs e)
         {
-            if (uxClientPath.Text == string.Empty || !uxClientPath.Text.Contains(".exe"))
+            if (uxClientPath.Text == string.Empty 
+                || !uxClientPath.Text.Contains(".exe")
+                || !File.Exists(uxClientPath.Text))
             {
                 MessageBox.Show("Client path is not valid.");
                 return;
@@ -53,6 +56,17 @@ namespace Tibia
 
             process.Kill();
 
+            if (rsaKey <= 0) {
+                MessageBox.Show("Unable to find rsaKey.");
+                return;
+            }
+
+            if (loginServer <= 0)
+            {
+                MessageBox.Show("Unable to find loginServer.");
+                return;
+            }
+
             var pi = new WinAPI.PROCESS_INFORMATION();
             var si = new WinAPI.STARTUPINFO();
 
@@ -66,7 +80,7 @@ namespace Tibia
             baseAddress = (uint)WinAPI.GetBaseAddress(processHandle).ToInt32();
 
             Memory.WriteString(processHandle, rsaKey + baseAddress, Constants.OpenTibiaRsaHexKey);
-            Memory.WriteString(processHandle, loginServer + baseAddress, Memory.ReadString(processHandle, loginServer + baseAddress).Replace("https://secure.tibia.com/services/login.php", uxIP.Text));
+            Memory.WriteString(processHandle, loginServer + baseAddress, Memory.ReadString(processHandle, loginServer + baseAddress).Replace(Constants.LoginWebServiceUrl, uxIP.Text));
             WinAPI.ResumeThread(pi.hThread);
             process.WaitForInputIdle();
             WinAPI.CloseHandle(pi.hThread);
