@@ -56,12 +56,12 @@ namespace Tibia
 
             process.Kill();
 
-            if (rsaKey <= 0) {
+            if (rsaKey <= baseAddress) {
                 MessageBox.Show("Unable to find rsaKey.");
                 return;
             }
 
-            if (loginServer <= 0)
+            if (loginServer <= baseAddress)
             {
                 MessageBox.Show("Unable to find loginServer.");
                 return;
